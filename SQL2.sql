@@ -22,3 +22,23 @@ SELECT * FROM CUSTOMERS
 SELECT CONTACTNAME, EMAIL, SUBSTRING(EMAIL, CHARINDEX('@', EMAIL)+1, LEN(EMAIL)) AS DOMAIN_NAME FROM CUSTOMERS; 
 --5. display number of employees in every domain
 SELECT SUBSTRING(EMAIL, CHARINDEX('@', EMAIL)+1, LEN(EMAIL)) AS DOMAIN_NAME, COUNT(*) 'Count' FROM CUSTOMERS GROUP BY SUBSTRING(EMAIL, CHARINDEX('@', EMAIL)+1, LEN(EMAIL)) ;
+
+-----------------------------------------------------------------------------------------------
+DROP TABLE PRODUCT
+
+create table product (pid int,description varchar(20))
+
+insert into product values(1,'bread')
+insert into product values(2,'sweet bread')
+insert into product values(3,'PASTA')
+insert into product values(4,'CRACKERS')
+insert into product values(5,'CEREAL')
+insert into product values(6,'Desserts')
+
+select * from product
+------------------patindex : PATTERN_INDEX
+select Description from product
+	  where patindex('%[b,B]read%',description) =0
+
+select Description from product
+	  where patindex('%[b,B]read%',description) >0
